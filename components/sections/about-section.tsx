@@ -2,6 +2,7 @@
 
 import { GlowingCard } from "@/components/ui/floating-element";
 import { useIntersection } from "@/hooks/use-intersection";
+import { RefObject } from "react";
 
 // Education Information
 const education = [
@@ -69,7 +70,11 @@ export function AboutSection() {
   const [ref, isVisible] = useIntersection<HTMLElement>({ threshold: 0.1 });
 
   return (
-    <section ref={ref} id="about" className="section bg-slate-950/30">
+    <section 
+      ref={ref as RefObject<HTMLElement>} 
+      id="about" 
+      className="section bg-slate-950/30"
+    >
       <div className="container-default space-y-12">
         {/* Section Header */}
         <div className="max-w-2xl space-y-4">
@@ -92,7 +97,7 @@ export function AboutSection() {
         <div className="space-y-6">
           <h3 className="text-lg font-semibold text-slate-100 fade-in-up">📚 Education</h3>
           <div className="grid gap-4 sm:grid-cols-2">
-            {education.map((edu, index) => (
+            {education.map((edu) => (
               <GlowingCard
                 key={edu.degree}
                 className="fade-in-up"

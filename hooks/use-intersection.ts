@@ -14,7 +14,7 @@ interface UseIntersectionOptions {
  */
 export function useIntersection<T extends HTMLElement = HTMLDivElement>(
     options: UseIntersectionOptions = {}
-): [RefObject<T | null>, boolean] {
+): [RefObject<T>, boolean] {
     const { threshold = 0.1, rootMargin = "0px", triggerOnce = true } = options;
     const ref = useRef<T>(null);
     const [isIntersecting, setIsIntersecting] = useState(false);
@@ -44,7 +44,7 @@ export function useIntersection<T extends HTMLElement = HTMLDivElement>(
         };
     }, [threshold, rootMargin, triggerOnce]);
 
-    return [ref, isIntersecting];
+    return [ref as RefObject<T>, isIntersecting];
 }
 
 /**
